@@ -1,0 +1,1 @@
+{"uuid":"f605dbc9-e1cb-4bfb-aa29-78a631688a84","name":"base.MultiDeviceBaseTest.setUp","children":["6a329b71-e6a3-482b-9185-11c1c59cfbae"],"description":"","befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1752202654960,"stop":1752202665231}],"afters":[],"start":1752202654959,"stop":1752202665231}

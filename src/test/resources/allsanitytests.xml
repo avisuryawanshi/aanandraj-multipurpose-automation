@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!--
+  ========================================
+  TestNG Suite File - Sanity Group Execution
+  ========================================
+
+  🧪 Purpose:
+  Execute only test methods annotated with @Test(groups = {"sanity"}).
+  Use this suite after each build deployment to verify basic functionality.
+
+  📌 Usage:
+  Run via IDE or CI/CD job using:
+    > testng grouping.xml
+
+  ✅ Quick Checks
+  ✅ Smoke-level validation
+-->
+<suite name="grouping suite">
+
+  <test name="grouping test">
+
+      <!-- Group Inclusion -->
+     <groups>
+		<run>
+            <!-- Run only tests with the 'sanity' group -->
+			<include name="sanity"/>
+		</run>
+	 </groups>
+
+      <!-- Test Classes To Scan -->
+      <classes>
+          <class name="testGrouping.GP001LoginTest"/>
+          <class name="testGrouping.GP002HomeTest"/>
+          <class name="testGrouping.GP003BookingTest"/>
+          <class name="testGrouping.GP004SearchingTest"/>
+          <class name="testGrouping.GP005OverflowMenuTest"/>
+          <class name="testGrouping.GP006DashboardTest"/>
+       </classes>
+    
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
