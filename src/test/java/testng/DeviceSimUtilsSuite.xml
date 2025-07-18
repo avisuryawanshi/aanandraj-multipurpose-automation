@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="AppiumDeviceSimUtilsSuite" parallel="false" thread-count="0">
+
+    <test name="Device Sim Emulator Tests">
+        <classes>
+            <class name="utils.DeviceSimUtils"/>
+        </classes>
+    </test>
+</suite>

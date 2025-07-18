@@ -1,0 +1,50 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Parallel Mobile Suite" parallel="tests" thread-count="2">
+
+<!--
+<suite name="Parallel Mobile Suite" parallel="classes" thread-count="2">
+<suite name="Parallel Mobile Suite" parallel="methods" thread-count="2">
+-->
+        <!--
+        <listeners>
+        <listener class-name="listeners.ExtentTestListener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        </listeners>
+        -->
+<!-- =============================================================================================================== -->
+    <!-- Test 1: Runs on Emulator - Pixel 2 -->
+    <test name="Emulator - Pixel 2">
+        <!-- Parameters passed to the Appium Driver -->
+        <parameter name="platformName" value="Android"/>
+        <parameter name="deviceName" value="sdk_gphone64_x86_64"/>
+        <parameter name="udid" value="emulator-5554"/>
+        <parameter name="platformVersion" value="14"/>
+        <parameter name="automationName" value="UiAutomator2"/>
+        <parameter name="appPackage" value="com.example.anandraj_multipuprose_hall"/>
+        <parameter name="appActivity" value="com.example.anandraj_multipuprose_hall.MainActivity"/>
+
+        <!-- Test class to be executed -->
+        <classes>
+            <class name="testGrouping.GP001LoginTest"/>
+        </classes>
+    </test>
+<!-- =============================================================================================================== -->
+    <!-- Test 2: Runs on Physical Device - Redmi Note 12 Pro+ -->
+    <test name="Physical Device - Redmi Note 12 Pro+">
+        <!-- Parameters passed to the Appium Driver -->
+        <parameter name="platformName" value="Android"/>
+        <parameter name="deviceName" value="Redmi Note 12 Pro+"/>
+        <parameter name="udid" value="adb-cqrwkn89h6wocew8-pQXpCZ._adb-tls-connect._tcp"/>
+        <parameter name="platformVersion" value="14"/>
+        <parameter name="automationName" value="UiAutomator2"/>
+        <parameter name="appPackage" value="com.example.anandraj_multipuprose_hall"/>
+        <parameter name="appActivity" value="com.example.anandraj_multipuprose_hall.MainActivity"/>
+
+        <!-- Test class to be executed -->
+        <classes>
+            <class name="testGrouping.GP001LoginTest"/>
+        </classes>
+    </test>
+
+</suite>

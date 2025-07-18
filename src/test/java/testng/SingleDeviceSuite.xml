@@ -1,0 +1,37 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<!--
+    TestNG Suite for Sequential Appium Execution on a Single Android Device.
+    Purpose: Validate login functionality on Redmi Note 12 Pro+ 5G.
+-->
+
+<suite name="Appium Test Suite" parallel="false">
+
+    <!-- Optional TestNG Listeners for Enhanced Reporting
+    <listeners>
+        <listener class-name="listeners.ExtentTestListener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    -->
+
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
+
+    <!-- Test Block for single Device: Redmi Note 12 Pro+ 5G -->
+    <test name="Device 1 - Redmi Note 12 Pro+ 5G">
+        <!-- Basic Device Configuration Parameters -->
+        <parameter name="platformName" value="Android"/>
+        <parameter name="deviceName" value="Redmi Note 12 Pro+ 5G"/>
+        <parameter name="platformVersion" value="14"/>
+
+        <!-- Test Class Executed: Login Test -->
+        <classes>
+            <class name="testCases.TC001LoginTest"/>
+        </classes>
+    </test>
+
+</suite>
+
+

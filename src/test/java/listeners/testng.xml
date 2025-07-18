@@ -1,0 +1,55 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Mobile_Automation_Suite" parallel="tests" thread-count="2">
+
+    <!--  ─────────────  GLOBAL PARAMETERS  ─────────────  -->
+    <parameter name="platformName"     value="Android"/>
+    <parameter name="deviceName"       value="emulator-5554"/>
+    <parameter name="udid"             value="emulator-5554"/>
+    <parameter name="platformVersion"  value="13"/>
+    <parameter name="automationName"   value="UiAutomator2"/>
+
+    <!--  ───────────── TEST GROUP 1 ─────────────  -->
+    <test name="Smoke_Tests" preserve-order="true">
+        <groups>
+            <run>
+                <include name="Sanity"/>
+            </run>
+        </groups>
+
+        <classes>
+            <!-- Replace it with your real test classes -->
+            <class name="testCases.TC001LoginTest"/>
+            <class name="testCases.TC002HomeTest"/>
+        </classes>
+    </test>
+
+    <!--  ───────────── TEST GROUP 2 ─────────────  -->
+    <test name="Regression_Tests" preserve-order="true">
+        <groups>
+            <run>
+                <include name="Regression"/>
+            </run>
+        </groups>
+
+        <classes>
+            <!-- Replace it with your real regression classes -->
+            <class name="testCases.TC003BookingTest"/>
+            <class name="testCases.TC004SearchingTest"/>
+        </classes>
+    </test>
+
+    <!--  Example of adding Data‑Driven or other groups
+    <test name="DataDriven_Tests">
+        <groups>
+            <run>
+                <include name="DataDriven"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="tests.datadriven"/>
+        </packages>
+    </test>
+    -->
+
+</suite>

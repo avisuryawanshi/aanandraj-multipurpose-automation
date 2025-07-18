@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="sanity Test Suite" parallel="false">
+
+    <test name="Real Device">
+        <parameter name="platform"   value="Android"/>
+        <parameter name="deviceName" value="Redmi Note 12 +Pro"/>
+
+        <classes>
+            <class name="testCases.TC001LoginTest"/>
+        </classes>
+    </test>
+
+</suite>

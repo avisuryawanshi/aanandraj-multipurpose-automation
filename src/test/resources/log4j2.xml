@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="INFO">
+	            
+  <Properties>
+    <Property name="basePath">./log</Property> <!-- Changed 'basepath' to 'basePath' -->
+  </Properties>
+
+// ---------------------------------------------------------------------------------------------------------------------
+<!-- Appender section: defines where logs are written -->
+ <Appenders>
+
+     <!-- Console appender: prints logs to IntelliJ terminal -->
+    <Console name="Console" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        <!-- Format: time | thread | log level | class | message -->
+    </Console>
+
+     <!-- Rolling file appender: writes logs to file and rolls over daily or on size -->
+    <RollingFile name="File" 
+                 fileName="${basePath}/automation.log" 
+                 filePattern="${basePath}/automation-%d{yyyy-MM-dd}.log.gz">
+        <!-- Log file format -->
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        <SizeBasedTriggeringPolicy size="5000"/> <!-- Rolls over when file reaches 5 MB -->
+        <!-- <TimeBasedTriggeringPolicy />--> <!-- Rolls over daily -->
+
+        <!-- Optional: roll over every day (uncomment if needed) -->
+        <!-- <TimeBasedTriggeringPolicy /> -->
+
+    </RollingFile>
+</Appenders>
+// ---------------------------------------------------------------------------------------------------------------------
+
+<!-- Logger section: controls log levels and which appenders to use -->
+
+  <Loggers>
+    <Root level="Info">
+         <!-- Here you can use multiple log levels: All, Trace, Debug, Info, Warn, Error, Off -->
+         <AppenderRef ref="Console" />     <!-- Enable console logging -->
+         <!--  <AppenderRef ref="File"/>-->
+    </Root>
+  </Loggers>
+  
+</Configuration>
