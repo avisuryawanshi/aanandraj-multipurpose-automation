@@ -3,45 +3,52 @@ package base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import utils.ConfigReader;
 
 import java.net.URI;
 import java.net.URL;
+
+import static base.DriverController.mobileDriver;
 
 ///  NOTE: we prefer UiAutomator2Options over DesiredCapabilities in modern Appium
 
 public class DriverFactory {
 
-    // Thread-safe driver instance
+    //Thread-safe driver instance 👉 Enables parallel execution (multiple devices)
     //private static final ThreadLocal<AppiumDriver> mobileDriver = new ThreadLocal<>();
 
-    private static AppiumDriver mobileDriver;
+    public static AppiumDriver mobileDriver;
 
     public static AppiumDriver getAppiumDriver() {
         if (mobileDriver == null) {
             try {
-                // --------------------------------------
+                // --------------------------------------------
                 // ✅ Using UiAutomator2Options (W3C-Compliant)
-                // --------------------------------------
+                // --------------------------------------------
                 UiAutomator2Options options = new UiAutomator2Options();
 
-                options.setPlatformName("Android");
-                options.setDeviceName("Redmi Note 12 Pro+ 5G");
-                options.setUdid("adb-cqrwkn89h6wocew8-pQXpCZ._adb-tls-connect._tcp");
-                options.setPlatformVersion("14");
-                options.setAutomationName("UiAutomator2");
+                options.setPlatformName(ConfigReader.get("platformName"));          //Android
+                options.setDeviceName(ConfigReader.get("deviceName"));              //Pixel 6 API 34 //Redmi Note 12 Pro+ 5G //sdk_gphone64_x86_64 //adb-xyz123456
+                options.setUdid(ConfigReader.get("udid"));                         //adb-cqrwkn89h6wocew8-pQXpCZ._adb-tls-connect._tcp // emulator-5554
+                options.setPlatformVersion(ConfigReader.get("platformVersion"));    //14
+                options.setAutomationName(ConfigReader.get("automationName"));      //UiAutomator2
+                //options.setFullReset(false);                                      //To Uninstall and Reinstall Every Time
+                //options.setNoReset(true);                                         //To Keep the App but cache and user data
+
+                // If the app is already on the device, and you don't provide a .apk path in setApp(), Appium will simply launch the existing app.
 
                 // Launch installed app via appPackage and appActivity
-                options.setAppPackage("com.example.anandraj_multipuprose_hall");
-                options.setAppActivity("com.example.anandraj_multipuprose_hall.MainActivity");
-
+                // options.setAppPackage(ConfigReader.get("appPackage"));           //com.example.anandraj_multipuprose_hall
+                // options.setAppActivity(ConfigReader.get("appActivity"));         //com.example.anandraj_multipuprose_hall.MainActivity
+                // Use setApp() for a local .apk path OR setActivity/Package for an installed app
+                options.setApp(ConfigReader.get("appPath"));                        //config properties file
                 // 👉 Uncomment below if you prefer fresh app install from APK
-                // options.setApp(ConfigReader.get("app"));
                 // options.setApp("D:\\AMH\\AnandRaj Multipurpose Hall Documents\\Builds\\app-release.apk");
 
-                // --------------------------------------
-                // ✅ Connect to Appium Server
-                // --------------------------------------
-                URL serverURL = new URI("http://127.0.0.1:4723/").toURL();
+                // ----------------------------------------------------
+                // ✅ Connect to Appium Server (Default Appium 2.0 URL)
+                // ----------------------------------------------------
+                URL serverURL = new URI(ConfigReader.get("appiumServer")).toURL();  //http://127.0.0.1:4723/
                 System.out.println("[INFO] Starting Appium session on: " + serverURL);
 
                 mobileDriver = new AndroidDriver(serverURL, options);

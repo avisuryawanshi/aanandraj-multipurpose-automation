@@ -45,9 +45,9 @@ public class DeviceSimUtils extends TestBase {
                         .setDeviceName("sdk_gphone64_x86_64")
                         .setUdid("emulator-5554")
                         .setPlatformVersion("14")
-                        .setAutomationName("UiAutomator2")
-                        .setAppPackage("com.example.anandraj_multipuprose_hall")
-                        .setAppActivity("com.example.anandraj_multipuprose_hall.MainActivity");
+                        .setAutomationName("UiAutomator2");
+                        //.setAppPackage("com.example.anandraj_multipuprose_hall")
+                       // .setAppActivity("com.example.anandraj_multipuprose_hall.MainActivity");
                 //.setNoReset(true);  // Optional if needed
 
                 URL serverURL = new URI("http://127.0.0.1:4723/").toURL();

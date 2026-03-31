@@ -15,10 +15,7 @@ public class LoginPage extends BasePage {
     // ---------------------------------------------------------------------------
     public LoginPage(AppiumDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
-
-    private final WebDriverWait wait;
 
 // LOCATORS ******
 
@@ -54,6 +51,11 @@ public class LoginPage extends BasePage {
         txtUserField.click();
         txtUserField.clear();
         txtUserField.sendKeys(username);
+
+        /*getElement(txtUserFieldLocator).click();
+        getElement(txtUserFieldLocator).clear();
+        getElement(txtUserFieldLocator).sendKeys(username);*/
+
     }
 
     public void enterPassword(String passcode) {

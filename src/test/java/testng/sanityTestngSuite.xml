@@ -2,13 +2,16 @@
 
 <suite name="sanity Test Suite" parallel="false">
 
-    <test name="Real Device">
+    <test name="Real Device Redmi Note 12+ Pro">
+
         <parameter name="platform"   value="Android"/>
         <parameter name="deviceName" value="Redmi Note 12 +Pro"/>
 
         <classes>
             <class name="testCases.TC001LoginTest"/>
         </classes>
+
+
     </test>
 
 </suite>

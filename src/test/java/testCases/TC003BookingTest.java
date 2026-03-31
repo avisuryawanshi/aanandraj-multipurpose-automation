@@ -46,7 +46,7 @@ public class TC003BookingTest extends BaseTest {
         // Enter date
         bookingPage.tapDateField();           // Open calendar
         bookingPage.tapDateEditIcon();        // Tap calendar/edit icon
-        bookingPage.EnterSpecificDate("07/05/2025");   // Select "mm/dd/yyyy"
+        bookingPage.EnterSpecificDate("07/24/2025");   // Select "mm/dd/yyyy"
         bookingPage.confirmDate();            // Confirm the selection
 
         // Enter time
@@ -81,8 +81,8 @@ public class TC003BookingTest extends BaseTest {
 
         // Enter hall and booking amount
         //bookingPage.enterHallAmount("20000");
-       // Thread.sleep(5000);
-       //bookingPage.enterBookingAmount("15000");
+        Thread.sleep(5000);
+        bookingPage.enterBookingAmount("15000");
 
         // Fetch totals (optional: assert correctness)
         /*String total = bookingPage.getTotalAmount();
@@ -92,8 +92,8 @@ public class TC003BookingTest extends BaseTest {
         System.out.println("Balance Amount: " + balance);*/
 
         // Optionally confirm booking or send to WhatsApp
-        //bookingPage.tapSendToWhatsApp();
-        //bookingPage.tapConfirmBooking();
+       // bookingPage.tapSendToWhatsApp();
+        bookingPage.tapConfirmBooking();
 
 
     }

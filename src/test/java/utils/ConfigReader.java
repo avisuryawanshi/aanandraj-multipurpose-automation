@@ -13,15 +13,15 @@ import java.util.Properties;
 
 public class ConfigReader {
 
-    private static Properties prop;
+    private static Properties p;
 
-    public static void loadConfig(String env) {
+    public static void loadProperties() {
         try {
             System.out.println("[INFO] Loading configuration from config.properties...");
-            FileInputStream fis = new FileInputStream("src/test/resources/config.properties");
 
-            prop = new Properties();
-            prop.load(fis);
+            FileInputStream file = new FileInputStream("src/test/resources/config.properties");
+            p = new Properties();
+            p.load(file);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,6 +29,7 @@ public class ConfigReader {
     }
 
     public static String get(String key) {
-        return prop.getProperty(key);
+
+        return p.getProperty(key);
     }
 }

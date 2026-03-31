@@ -18,9 +18,7 @@ public class OverflowMenuPage extends BasePage{
 // ---------------------------------------------------------------------------
     public OverflowMenuPage(AppiumDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
-    final WebDriverWait wait;
 
 // =====================================================================================================================
 // LOCATORS ******

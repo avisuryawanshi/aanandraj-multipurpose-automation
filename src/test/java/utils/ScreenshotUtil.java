@@ -32,12 +32,12 @@ public class ScreenshotUtil {
 
     private static final Logger log = LogManager.getLogger(ScreenshotUtil.class);
 
-/**
- * Captures and saves a screenshot with test method name and timestamp.
- *
- * @param driver   AppiumDriver instance (AndroidDriver or IOSDriver)
- * @param testName Name of the test method (used in filename)
- */
+    /**
+     * Captures and saves a screenshot with test method name and timestamp.
+     *
+     * @param driver   AppiumDriver instance (AndroidDriver or IOSDriver)
+     * @param testName Name of the test method (used in filename)
+     */
 
     /*public static String captureScreenshot(AppiumDriver driver, String testName) {
         try {
@@ -51,35 +51,49 @@ public class ScreenshotUtil {
         }
         return testName;
     }*/
+    public static String captureScreenshot(AppiumDriver driver, String testName) {
 
-public static String captureScreenshot(AppiumDriver driver, String testName) {
-
-    String filePath = null;
-    try {
-        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);  // Ensure cast to TakesScreenshot
-        String dateFolder = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        String timestamp = new SimpleDateFormat("HHmmss").format(new Date());
-        String fileName = testName + "_" + timestamp + ".png";
-
-        String dirPath = System.getProperty("user.dir") + "/screenshots/" + dateFolder;
-        File dir = new File(dirPath);
-        if (!dir.exists()) {
-            dir.mkdirs(); // Create folder if not exists
+        // 🛠️ Safety check: If driver is null/closed, don't attempt screenshot
+        if (driver == null || driver.getSessionId() == null ) {
+            log.error("[Screenshot] Driver is null, cannot capture screen.");
+            return null;
         }
 
-        filePath = dirPath + "/" + fileName;
-        File dest = new File(filePath);
-        FileUtils.copyFile(src, dest);
+        String filePath = null;
 
-        log.info("[Screenshot] Saved: " + filePath);
-        System.out.println("[Screenshot] Saved at: " + filePath);
+        try {
+            // ✅ Safe casting check
+            if (!(driver instanceof TakesScreenshot)) {
+                log.error("[Screenshot] Driver does not support screenshots.");
+                return null;
+            }
 
-    } catch (Exception e) {
-        log.error("[Screenshot] Failed to capture: ", e);
-        System.err.println("[Screenshot] Failed: " + e.getMessage());
+            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);  // Ensure cast to TakesScreenshot
+
+            String dateFolder = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+            String timestamp = new SimpleDateFormat("HHmmss").format(new Date());
+
+            String fileName = testName + "_" + timestamp + ".png";
+            String dirPath = System.getProperty("user.dir") + "/screenshots/" + dateFolder;
+
+            File dir = new File(dirPath);
+            if (!dir.exists() && !dir.mkdirs()) {
+                log.error("[Screenshot] Failed to create directory: " + dirPath);
+                return null;
+            }
+
+            filePath = dirPath + "/" + fileName;
+            FileUtils.copyFile(src, new File(filePath));
+
+            log.info("[Screenshot] Saved: " + filePath);
+            System.out.println("[Screenshot] Saved at: " + filePath);
+
+        } catch (Exception e) {
+            log.error("[Screenshot] Failed to capture: ", e);
+            System.err.println("[Screenshot] Failed: " + e.getMessage());
+        }
+        return filePath;  // Return a correct file path for reporting
     }
-    return filePath;  // Return correct file path for reporting
-}
 
 // ================================================================================================================================================================
     // 🔁 Captures screenshot as a Base64 string.
@@ -98,10 +112,6 @@ public static String captureScreenshot(AppiumDriver driver, String testName) {
 
     // Capture a screenshot of a specific section
     // Captures a screenshot of a specific WebElement/MobileElement.
-
-
-
-
 
 
 }

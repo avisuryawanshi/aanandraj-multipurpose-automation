@@ -19,10 +19,7 @@ public class BookingPage extends BasePage {
     // ---------------------------------------------------------------------------
     public BookingPage(AppiumDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
-
-    final WebDriverWait wait;
 
 // =====================================================================================================================
 // LOCATORS ******
@@ -92,15 +89,15 @@ public class BookingPage extends BasePage {
     final By amountForPanditLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[5]");
 
     // AMOUNT SECTION
-    //final By hallAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className("android.widget.EditText").instance(5)");
-    final By hallAmountLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[6]");
+    final By hallAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(5)");
+    //final By hallAmountLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[6]");
 
     // Total Amount NOT REQUIRED ***
     //final By totalAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(12)");
 
     // DUPLICATE LOCATORS ***
     //final By bookingAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className("android.widget.EditText").instance(5)");
-    //final By bookingAmountLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[4]");
+    final By bookingAmountLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[4]");
     // Balance Amount NOT REQUIRED ****
     final By balanceAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(13)");
 
@@ -270,47 +267,45 @@ public class BookingPage extends BasePage {
         WebElement field = wait.until(ExpectedConditions.visibilityOfElementLocated(amountForPanditLoc));
         field.clear();
         field.sendKeys(amount);
-    }
+    }*/
 
     // ********* AMOUNT SECTION ********* ------------------------------------------------------------------------------
 
+    // APPROACH 1 **********
     /*public void enterHallAmount(String number) {
         wait.until(ExpectedConditions.elementToBeClickable(hallAmountLoc)).click();
         try {
             Thread.sleep(1000); // Let the UI update (optional but helps sometimes)
-        } catch (InterruptedException ignored) {}
-        scrollDown(); // 👈 Scroll after toggling Catering
-    }
-
-    public void enterHallAmount(String number) {
-        //scrollToElement(hallAmountLoc);  // Ensure field is visible
-
-        WebElement field = wait.until(ExpectedConditions.elementToBeClickable(hallAmountLoc));
-        field.click();
-        field.sendKeys(number);
-    }*/
-
-    /*public void enterHallAmount(String number) {
-        //scrollToElement(hallAmountLoc);
-
-        WebElement field = wait.until(ExpectedConditions.elementToBeClickable(hallAmountLoc));
-        field.click();
-        field.clear();
-        field.sendKeys(number);
-
-        /*for (int attempt = 0; attempt < 2; attempt++) {
-            try {
-                WebElement field = wait.until(ExpectedConditions.elementToBeClickable(hallAmountLoc));
-                field.click();
-                field.clear();
-                field.sendKeys(number);
-                ((AndroidDriver) mobileDriver).hideKeyboard();
-                break; // success
-            } catch (StaleElementReferenceException e) {
-                System.out.println("Retrying due to stale element...");
-            }
+        } catch (InterruptedException ignored) {
         }
+        //scrollDown(); // 👈 Scroll after toggling Catering
     }*/
+
+    // APPROACH 2 ***********
+    /*public void enterHallAmount(String number) {
+        scrollToElement(hallAmountLoc);  // Ensure field is visible
+
+        WebElement field = wait.until(ExpectedConditions.elementToBeClickable(hallAmountLoc));
+        field.click();
+        field.sendKeys(number);
+    }*/
+
+    // APPROACH 3 ************
+      /*public void enterHallAmount(String number) {
+      for (int attempt = 0; attempt < 2; attempt++) {
+          try {
+              WebElement field = wait.until(ExpectedConditions.elementToBeClickable(hallAmountLoc));
+              field.click();
+              field.clear();
+              field.sendKeys(number);
+              ((AndroidDriver) mobileDriver).hideKeyboard();
+              break; // success
+          } catch (StaleElementReferenceException e) {
+              System.out.println("Retrying due to stale element...");
+          }
+      }
+      }*/
+
     // SCROLL SUPPORT
         /*public void scrollDown() {
         Dimension size = mobileDriver.manage().window().getSize();
@@ -327,10 +322,10 @@ public class BookingPage extends BasePage {
         swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         mobileDriver.perform(List.of(swipe));
-        }*/
+        }
 
     // Scroll until element is visible
-        /*public void scrollToElement(By locator) {
+        public void scrollToElement(By locator) {
         int maxScroll = 2;
         int attempt = 0;
         while (attempt < maxScroll) {
@@ -346,8 +341,9 @@ public class BookingPage extends BasePage {
             throw new NoSuchElementException("Element not found after scrolling: " + locator.toString());
         }*/
 
-    /*public void enterHallAmount(String number) {
-        scrollToElement(hallAmountLoc);  // Ensure field is visible
+    // APPROACH 4 **************
+        /*public void enterHallAmount(String number) {
+        //scrollToElement(hallAmountLoc);  // Ensure field is visible
 
         // Tap via TouchActions or JavaScript-like interaction
         WebElement field = wait.until(ExpectedConditions.presenceOfElementLocated(hallAmountLoc));
@@ -369,30 +365,33 @@ public class BookingPage extends BasePage {
         System.out.println("Entered hall amount: " + number);
     }*/
 // =====================================================================================================================
-   /* public String getTotalAmount() {
+    // NOT REQUIRED Get Total Amount
+    /*public String getTotalAmount() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(totalAmountLoc)).getText();
-    }
+    }*/
 
     public void enterBookingAmount(String amount) {
         WebElement field = wait.until(ExpectedConditions.visibilityOfElementLocated(bookingAmountLoc));
+        field.click();
         field.clear();
         field.sendKeys(amount);
     }
 
-    public String getBalanceAmount() {
+    // NOT REQUIRED Get Total Amount
+    /*public String getBalanceAmount() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(balanceAmountLoc)).getText();
-    }
+    }*/
 
     // ********* FOOTER ACTIONS ********* ------------------------------------------------------------------------------
-    public void tapSendToWhatsApp() {
+    /*public void tapSendToWhatsApp() {
         scrollToElement(sendToWhatsAppLoc);  // Ensure field is visible
         wait.until(ExpectedConditions.elementToBeClickable(sendToWhatsAppLoc)).click();
-    }
+    }*/
 
     public void tapConfirmBooking() {
-        scrollToElement(confirmBookingLoc);  // Ensure field is visible
+        //scrollToElement(confirmBookingLoc);  // Ensure field is visible
         wait.until(ExpectedConditions.elementToBeClickable(confirmBookingLoc)).click();
-    }*/
+    }
 }
 
 

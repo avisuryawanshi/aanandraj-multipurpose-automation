@@ -9,14 +9,15 @@ import org.apache.logging.log4j.Logger;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import listeners.ExtentReportManager;
+import utils.ConfigReader;
+import utils.DeviceSimUtils;
 import utils.ScreenshotUtil;
-import utils.VideoRecorder;
 
 import java.lang.reflect.Method;
 
 /**
  * 📦 BaseTest - (Core base class) Abstract base class for all test classes
- * Handles driver setup, ExtentReports, logging, screenshots, video recording, and TestNG lifecycle.
+ * Handles driver setup, ExtentReports, logging, load properties files, screenshots, video recording, and TestNG lifecycle.
  */
 
 public class BaseTest {
@@ -36,6 +37,9 @@ public class BaseTest {
     //  Before Suite - Initialize ExtentReport once per test suite
     @BeforeSuite(alwaysRun = true)
     public void startReport() {
+
+        // ✅ Load config here (only once)
+        ConfigReader.loadProperties();
         extent = ExtentReportManager.getInstance();
     }
 
@@ -46,6 +50,7 @@ public class BaseTest {
             extent.flush();
         }
     }
+
 //  ░░░░░ TestNG Hooks - CLASS LEVEL ░░░░░ =============================================================================
 
     // Before Class - Setup before each test class (can use group filters) Setup driver, env configs, data loaders
@@ -62,7 +67,9 @@ public class BaseTest {
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         DriverFactory.quitDriver(); // Quit driver after tests
+        TL_DEVICE.remove(); // 🛠️ Correct place to cleanup class-level thread data
     }
+
 // ░░░░░ TestNG Hooks - METHOD LEVEL ░░░░░ =============================================================================
 
     // Before Method - Create new Extent test node for each method
@@ -86,17 +93,20 @@ public class BaseTest {
 
         switch (result.getStatus()) {
             case ITestResult.FAILURE -> {
+                // 🛠️ Capture screenshot and get the PATH
                 String screenshotPath = ScreenshotUtil.captureScreenshot(mobileDriver, nameWithDevice);
+
+                // 🛠️ Attach to Extent Report
                 test.fail(result.getThrowable()).addScreenCaptureFromPath(screenshotPath);
-                log.error("❌ FAILED: " + methodName + " | Device: " + tag);
+                //log.error("❌ FAILED: " + methodName + " | Device: " + tag);
             }
             case ITestResult.SUCCESS -> {
                 test.pass("✅ Test passed");
-                log.info("✅ PASSED: " + methodName + " | Device: " + tag);
+                //log.info("✅ PASSED: " + methodName + " | Device: " + tag);
             }
             case ITestResult.SKIP -> {
                 test.skip("⚠️ Test skipped");
-                log.warn("⚠️ SKIPPED: " + methodName + " | Device: " + tag);
+                //log.warn("⚠️ SKIPPED: " + methodName + " | Device: " + tag);
             }
         }
         extentTest.remove();
@@ -106,7 +116,7 @@ public class BaseTest {
 }
 
 
-/* ░░░░░ Additional stuff for utility data ░░░░░ */
+/* ░░░░░ Additional stuff for util  ity data ░░░░░ */
 // 🔧 Future Enhancements: Utility setup, reporting hooks, and reusable test data loaders can be added here.
 // For example, reading test data from Excel/JSON/YAML before tests, setting up listeners, etc.
 // ---------------------------------------------------------------------------------------------------------------------

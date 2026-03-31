@@ -27,8 +27,8 @@ public final class DynamicEngineSwitching {
 				case "uiautomator2" -> {
 					UiAutomator2Options options = new UiAutomator2Options()
 							.setPlatformName("Android")
-							.setDeviceName("Redmi Note 12 Pro+ 5G")
-							.setUdid("adb-xyz123456")
+							.setDeviceName("sdk_gphone64_x86_64")  // Redmi Note 12 Pro+ 5G
+							.setUdid("emulator-5554") //adb-xyz123456
 							.setPlatformVersion("14")
 							.setAutomationName("UiAutomator2")
 							.setAppPackage("com.example.anandraj_multipuprose_hall")

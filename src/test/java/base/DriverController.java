@@ -12,7 +12,7 @@ import java.net.URL;
 public class DriverController {
 
     // ✅ Thread-safe driver instance store
-    private static final ThreadLocal<AppiumDriver> mobileDriver = new ThreadLocal<>();
+    static final ThreadLocal<AppiumDriver> mobileDriver = new ThreadLocal<>();
 
     // ✅ Getter to access current thread's driver
     public static AppiumDriver getDriver() {

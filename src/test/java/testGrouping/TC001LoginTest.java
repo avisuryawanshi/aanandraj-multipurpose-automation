@@ -15,8 +15,8 @@ public class TC001LoginTest extends BaseTest {
 
 // Positive Login Flow =================================================================================================
 
-        loginPage.enterUser("test");        // Step 1: Enter username
-        loginPage.enterPassword("123456");   // Step 2: Enter password
+        loginPage.enterUser("test");           // Step 1: Enter username
+        loginPage.enterPassword("123456");     // Step 2: Enter password
         loginPage.clickLogin();                         // Step 3: Click login button
         loginPage.handleFingerprintPromptNo();          // Step 4: Handle fingerprint prompt if appears
         //loginPage.handleFingerprintPromptYes();

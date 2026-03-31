@@ -18,11 +18,7 @@ public class DashboardPage extends BasePage {
 // ---------------------------------------------------------------------------
     public DashboardPage(AppiumDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
-
-    final WebDriverWait wait;
-
 // =====================================================================================================================
 // LOCATORS ******
 // =====================================================================================================================

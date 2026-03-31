@@ -1,20 +1,11 @@
 package testCases;
 
 import base.BaseTest;
-import io.qameta.allure.*;
-import listeners.AllureTestListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import config.ConfigReader;
-import utils.ScreenshotUtil;
 
-@Listeners(AllureTestListener.class)
-@Epic("Login Module")
-@Feature("Login Functionality")
 public class TC001LoginTest extends BaseTest {
 
     private static final Logger log = LogManager.getLogger(TC001LoginTest.class);
@@ -27,10 +18,7 @@ public class TC001LoginTest extends BaseTest {
      *          - Negative and edge case login validations
      */
 
-    @Test(description = "Verify login with valid credentials")
-    @Severity(SeverityLevel.CRITICAL)
-    @Story("Valid login test case")
-    //@Test
+    @Test(groups = {"Sanity"})
     public void testLoginWithSpecificCredentials() throws InterruptedException {
 
         log.info("===== Starting test: testLoginWithSpecificCredentials =====");
@@ -58,7 +46,7 @@ public class TC001LoginTest extends BaseTest {
         loginPage.enterPassword("123456");
 
         log.info("Step 3: Clicking login button");
-        //loginPage.clickLogin();
+        loginPage.clickLogin();
 
         log.info("Step 4: Handling fingerprint prompt (if shown/appears)");
         loginPage.handleFingerprintPromptNo();

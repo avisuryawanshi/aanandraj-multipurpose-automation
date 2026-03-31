@@ -17,10 +17,10 @@ public class HomePage extends BasePage{
     // ---------------------------------------------------------------------------
     public HomePage(AppiumDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        //this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
-    private final WebDriverWait wait;
+    //private final WebDriverWait wait;
 
 // LOCATORS ******
 
@@ -88,11 +88,11 @@ public class HomePage extends BasePage{
     }
 
     public boolean isDraftEventsTabVisible() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(upcomingEventsTabLocator)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(draftEventsTabLocator)).isDisplayed();
     }
 
     public boolean isCompleteEventsTabVisible() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(upcomingEventsTabLocator)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(completedEventsTabLocator)).isDisplayed();
     }
 // ----------------------------------------------------------------------------
     public boolean isRefreshBtnVisible() {
