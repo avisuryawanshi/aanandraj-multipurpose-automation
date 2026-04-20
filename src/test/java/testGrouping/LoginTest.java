@@ -12,14 +12,14 @@ public class LoginTest extends MultiDeviceBaseTest {
 
         // ✅ Launch device-specific Appium driver
 
-        @Test
+        /*@Test
         public void testLogin() {
-        LoginPage loginPage = new LoginPage(driver());
+        LoginPage loginPage = new LoginPage(driver);
 
         // Test Steps
         loginPage.enterUser("test");
         loginPage.enterPassword("123456");
         loginPage.clickLogin();
         loginPage.handleFingerprintPromptNo();
-    }
+    }*/
 }

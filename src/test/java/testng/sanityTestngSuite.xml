@@ -8,7 +8,7 @@
         <parameter name="deviceName" value="Redmi Note 12 +Pro"/>
 
         <classes>
-            <class name="testCases.TC001LoginTest"/>
+            <class name="testCases.M01_LoginTests"/>
         </classes>
 
 

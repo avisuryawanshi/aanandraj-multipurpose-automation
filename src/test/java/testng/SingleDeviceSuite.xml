@@ -28,7 +28,7 @@
 
         <!-- Test Class Executed: Login Test -->
         <classes>
-            <class name="testCases.TC001LoginTest"/>
+            <class name="testCases.M01_LoginTests"/>
         </classes>
     </test>
 

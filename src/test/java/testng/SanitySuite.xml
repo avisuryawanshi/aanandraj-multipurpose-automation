@@ -14,7 +14,7 @@
 
         <!-- Test Classes To Scan -->
         <classes>
-            <class name="testCases.TC001LoginTest"/>
+            <class name="testCases.M01_LoginTests"/>
         </classes>
 
     </test> <!-- Test -->

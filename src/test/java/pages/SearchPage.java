@@ -6,12 +6,10 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.HashMap;
 
-public class SearchPage extends BasePage{
+public class SearchPage extends BasePage {
 
 // ---------------------------------------------------------------------------
 // Constructor
@@ -29,7 +27,8 @@ public class SearchPage extends BasePage{
     final By topTitleLocator = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Anandraj Multipurpose Hall\")");
     //final By topBookingLocator = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)");
 
-    final By searchLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.Button[2]");
+    //final By searchLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.Button[2]");
+    final By searchLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(1)");
     //final By SearchPageLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\")");
     final By SearchPageLoc = By.xpath("//android.widget.EditText");
     final By getBookingInfoLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"John Lee\n" + "2025-07-02\n" + "12:45\")");
@@ -50,6 +49,7 @@ public class SearchPage extends BasePage{
         WebElement searchBox = wait.until(ExpectedConditions.presenceOfElementLocated(SearchPageLoc)); //visibilityOfElementLocated
         searchBox.click();
         searchBox.sendKeys(name);
+        searchBox.click();
 
         // Trigger the keyboard's search action
         HashMap<String, Object> args = new HashMap<>();

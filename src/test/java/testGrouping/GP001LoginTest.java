@@ -4,26 +4,30 @@ import base.MultiDeviceBaseTest;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
+//import static appiumguide.DriverFactory.mobileDriver;
+import static base.DriverController.mobileDriver;
+
 public class GP001LoginTest extends MultiDeviceBaseTest {
 
 // ---- Generate specific username and passcode ------------------------------------------------------------------------
 
-    /*@Test(dataProvider = "deviceProvider")
-    public void testLoginWithSpecificCredentials(String platformName, String deviceName, String udid, String platformVersion, String automationName){
+    @Test(dataProvider = "deviceProvider")
+    public void testLoginWithSpecificCredentials(String platformName, String deviceName, String udid, String platformVersion, String automationName) {
 
-    /*@Test(groups = {"Sanity", "Master"})
-    public void testLoginWithSpecificCredentials() throws InterruptedException {*/
+        //@Test(groups = {"Sanity", "Master"})
+        //public void testLoginWithSpecificCredentials() throws InterruptedException {
 
-        //LoginPage loginPage = new LoginPage(mobileDriver);
+        LoginPage loginPage = new LoginPage(mobileDriver.get());
 
 // Positive Login Flow =================================================================================================
 
-        /*loginPage.enterUser("test");        // Step 1: Enter username
+        loginPage.enterUser("test");        // Step 1: Enter username
         loginPage.enterPassword("123456");   // Step 2: Enter password
         loginPage.clickLogin();                         // Step 3: Click login button
         loginPage.handleFingerprintPromptNo();          // Step 4: Handle fingerprint prompt if appears
-        //loginPage.handleFingerprintPromptYes();*/
+        //loginPage.handleFingerprintPromptYes();
 
+    }}
 // Login PageUI Test ===================================================================================================
 
         /*System.out.println("Validating app title...");
@@ -94,4 +98,4 @@ public class GP001LoginTest extends MultiDeviceBaseTest {
 
 
 
-}
+

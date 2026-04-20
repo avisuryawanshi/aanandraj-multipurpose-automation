@@ -5,8 +5,6 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 
 public class LoginPage extends BasePage {
 
@@ -14,7 +12,8 @@ public class LoginPage extends BasePage {
     // Constructor
     // ---------------------------------------------------------------------------
     public LoginPage(AppiumDriver driver) {
-        super(driver);
+
+        super(driver); // Pass driver to BasePage
     }
 
 // LOCATORS ******
@@ -22,18 +21,17 @@ public class LoginPage extends BasePage {
     // ---------------------------------------------------------------------------
     // Locators - Positive Login Flow
     // ---------------------------------------------------------------------------
-    private final By txtUserFieldLocator = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(0)");
-    private final By txtPasswordFieldLocator = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)");
+    private final By usernameFieldLocator = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(0)");
+    private final By passwordFieldLocator = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)");
     private final By loginBtnLocator = AppiumBy.accessibilityId("Set Login");
-    private final By noBtnLocator = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"No\")");
-    private final By yesBtnLocator = AppiumBy.accessibilityId("Yes");
+
+    // LOCATORS - Fingerprint Prompt
+    private final By fingerprintYesButton = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"No\")");
+    private final By fingerprintNoButton = AppiumBy.accessibilityId("Yes");
 
     // Locators for UI Element Validation
     private final By appTitleLocator = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Anandraj Multipurpose Hall\")");
-    private final By heading = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Set Login Credentials\")");
-    private final By userFieldVisible = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]");
-    private final By passwordFieldVisible = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]");
-    private final By loginBtnVisible = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Set Login\")");
+    private final By loginHeading = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Set Login Credentials\")");
 
     // Locator for Negative Login Scenarios
 
@@ -47,19 +45,18 @@ public class LoginPage extends BasePage {
     // Actions - Positive Login Flow
     // -----------------------------------------------------------------------------------------------------------------
     public void enterUser(String username) {
-        WebElement txtUserField = wait.until(ExpectedConditions.presenceOfElementLocated(txtUserFieldLocator));
+        WebElement txtUserField = wait.until(ExpectedConditions.presenceOfElementLocated(usernameFieldLocator));
         txtUserField.click();
         txtUserField.clear();
         txtUserField.sendKeys(username);
 
-        /*getElement(txtUserFieldLocator).click();
-        getElement(txtUserFieldLocator).clear();
-        getElement(txtUserFieldLocator).sendKeys(username);*/
-
+        /*getElement(usernameFieldLocator).click();
+        getElement(usernameFieldLocator).clear();
+        getElement(usernameFieldLocator).sendKeys(username);*/
     }
 
     public void enterPassword(String passcode) {
-        WebElement txtPasswordField = wait.until(ExpectedConditions.presenceOfElementLocated(txtPasswordFieldLocator));
+        WebElement txtPasswordField = wait.until(ExpectedConditions.presenceOfElementLocated(passwordFieldLocator));
         txtPasswordField.click();
         txtPasswordField.clear();
         txtPasswordField.sendKeys(passcode);
@@ -71,13 +68,13 @@ public class LoginPage extends BasePage {
     }
 
     public void handleFingerprintPromptNo() {
-        WebElement noBtn = wait.until(ExpectedConditions.elementToBeClickable(noBtnLocator));
+        WebElement noBtn = wait.until(ExpectedConditions.elementToBeClickable(fingerprintYesButton));
         noBtn.click();
     }
 
     public void handleFingerprintPromptYes() {
-        WebElement noBtn = wait.until(ExpectedConditions.elementToBeClickable(yesBtnLocator));
-        noBtn.click();
+        WebElement yesBtn = wait.until(ExpectedConditions.elementToBeClickable(fingerprintNoButton));
+        yesBtn.click();
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -88,19 +85,19 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isHeadingDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(heading)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(loginHeading)).isDisplayed();
     }
 
     public boolean isUserFieldVisible() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(userFieldVisible)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(usernameFieldLocator)).isDisplayed();
     }
 
     public boolean isPasswordFieldVisible() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFieldVisible)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFieldLocator)).isDisplayed();
     }
 
     public boolean isLoginButtonVisible() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(loginBtnVisible)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(loginBtnLocator)).isDisplayed();
     }
 
     // Method to verify if the validation alert is displayed
@@ -124,6 +121,8 @@ public class LoginPage extends BasePage {
 
 
     }
+
+
 }
 
 

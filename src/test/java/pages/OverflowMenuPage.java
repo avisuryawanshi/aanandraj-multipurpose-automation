@@ -2,16 +2,15 @@ package pages;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OverflowMenuPage extends BasePage{
+public class OverflowMenuPage extends BasePage {
 
 // ---------------------------------------------------------------------------
 // Constructor
@@ -30,8 +29,9 @@ public class OverflowMenuPage extends BasePage{
     //final By topBookingLocator = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(0)");
 
     //CLICK OVERFLOW MENU
-    final By overflowMenuLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.Button[3]");
-
+    final By overflowMenuLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.Button\").instance(2)");
+    //final By overflowMenuLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.Button[3]");
+    // xpath: //android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.Button[3]
     //DOWNLOAD REPORTS
     final By downloadReportsLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Download Reports\")");
     final By selectDurationLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Duration\")");
@@ -86,6 +86,9 @@ public class OverflowMenuPage extends BasePage{
         }
 
         wait.until(ExpectedConditions.elementToBeClickable(submitBtnLoc)).click();
+        // Hide keyboard after entering value (optional)
+        ((AndroidDriver) mobileDriver).hideKeyboard();
+
     }
 
     public void cancelDownload() {
@@ -107,7 +110,7 @@ public class OverflowMenuPage extends BasePage{
     public Map<String, String> Settings() {
         Map<String, String> infoTexts = new HashMap<>();
 
-        // Click on Settings icon
+        // Click on the Settings icon
         wait.until(ExpectedConditions.elementToBeClickable(settingsLoc)).click();
 
         // Capture User Info text
@@ -125,8 +128,6 @@ public class OverflowMenuPage extends BasePage{
 
         return infoTexts;
     }
-
-
 
 
 

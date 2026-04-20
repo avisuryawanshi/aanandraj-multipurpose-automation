@@ -6,10 +6,7 @@ import io.appium.java_client.AppiumDriver;
 import listeners.ExtentReportManager;
 
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import utils.ScreenshotUtil;
 
 import java.lang.reflect.Method;
@@ -37,15 +34,15 @@ public class MultiDeviceBaseTest {
             return DriverController.getDriver();
         }
 
-        /* ── Create a node for each test method ── */
+        // ── Create a node for each test method
         @BeforeMethod(alwaysRun = true)
         public void createExtentNode(Method method) {
             EXTENT_TEST.set(extent.createTest(method.getName()));
         }
 
-        /* ── Launch driver using parameters from <test> block & set device tag ── */
+        // ── Launch driver using parameters from <test> block & set device tag ──
         @Parameters({"platformName", "deviceName", "udid", "platformVersion", "automationName"})
-        //@BeforeMethod(alwaysRun = true, dependsOnMethods = "createExtentNode")
+        @BeforeMethod(alwaysRun = true, dependsOnMethods = "createExtentNode")
         public void launchDriver(String platformName,
                                  String deviceName,
                                  String udid,
@@ -56,10 +53,10 @@ public class MultiDeviceBaseTest {
             String deviceTag = deviceName.replaceAll("\\s+", "") + "_" + udid;
             TL_DEVICE.set(deviceTag);
 
-            DriverController.launchAppiumDriver(platformName, deviceName, udid, platformVersion, automationName);
+            DriverController.launchAppiumDriverWithExistingServer(platformName, deviceName, udid, platformVersion, automationName); //launchAppiumDriver
         }
 
-        /* ── Screenshot & Extent logging ── */
+        // ── Screenshot & Extent logging ──
         @AfterMethod(alwaysRun = true)
         public void updateExtentAndQuit(ITestResult result) {
 
@@ -72,8 +69,8 @@ public class MultiDeviceBaseTest {
                     // screenshot file = tag_method.png
                     String file = ScreenshotUtil.captureScreenshot(driver(), tag + "_" + method);
                     test.fail(result.getThrowable()).addScreenCaptureFromPath(file);
-                    /*String path = ScreenshotUtil.captureScreenshot(driver(), result.getName());
-                    test.fail(result.getThrowable()).addScreenCaptureFromPath(path);*/
+                    String path = ScreenshotUtil.captureScreenshot(driver(), result.getName());
+                    test.fail(result.getThrowable()).addScreenCaptureFromPath(path);
                 }
                 case ITestResult.SUCCESS -> test.pass("Test passed");
                 case ITestResult.SKIP    -> test.skip("Test skipped");
@@ -84,7 +81,7 @@ public class MultiDeviceBaseTest {
             TL_DEVICE.remove();
         }
 
-        /* Flush report exactly once per suite */
+        // Flush report exactly once per suite
         @AfterSuite(alwaysRun = true)
         public void flushExtent() {
             if (extent != null) extent.flush();
@@ -119,22 +116,20 @@ public class MultiDeviceBaseTest {
 
 // =========================================================================================================================================================================
 
-    /*protected AppiumDriver mobileDriver;  //AppiumDriver variable for mobile testing
+   /* protected AppiumDriver mobileDriver;  //AppiumDriver variable for mobile testing
 
-    // @BeforeClass(groups= {"Sanity", "Regression", "Master", "DataDriven"})
+    @BeforeClass(groups= {"Sanity", "Regression", "Master", "DataDriven"})
     @Parameters({"platformName", "deviceName", "udid", "platformVersion", "automationName"})
     @BeforeMethod(alwaysRun = true)
-    public void setUp(String platformName, String deviceName, String udid, String platformVersion, String automationName)
-    {
+    public void setUp(String platformName, String deviceName, String udid, String platformVersion, String automationName) {
 
         // PARALLEL EXECUTION SETUP ===========================================================
         System.out.println("Running tests on device: " + deviceName);
-        mobileDriver = DriverController.launchAppiumDriver(platformName, deviceName, udid, platformVersion, automationName);
+        DriverController.launchAppiumDriver(platformName, deviceName, udid, platformVersion, automationName);
 
-        if (mobileDriver == null)
-        {
+        if (mobileDriver == null) {
             throw new IllegalStateException("Appium Driver is null. Cannot continue test execution.");
-        }
+        }*/
 
         // SERIAL EXECUTION SETUP ==============================================================
         /*

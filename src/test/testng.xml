@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Mobile_Automation_Suite">
+
+    <!--  ─────────────  GLOBAL PARAMETERS  ────────────────────────────────────────────────────  -->
+
+    <!-- Parameters passed to the Appium Driver -->
+    <parameter name="platformName" value="Android"/>
+    <parameter name="deviceName" value="sdk_gphone64_x86_64"/>
+    <parameter name="udid" value="emulator-5554"/>
+    <parameter name="platformVersion" value="14"/>
+    <parameter name="automationName" value="UiAutomator2"/>
+
+    <!--  ───────────── TEST GROUP 1 ────────────────────────────────────────────────────  -->
+    <test name="Critical Flow Tests">
+        <groups>
+            <run>
+                <include name="Sanity"/>   <!-- Include tests marked as @Test(groups={"Sanity"}) -->
+                <!-- <include name="Master"/> -->
+                <!-- 🔽 Optional toggles: Uncomment as needed -->
+                <!-- <include name="Regression"/> -->
+                <!-- <exclude name="Regression"/> -->
+                <!-- <include name="Functional"/> -->
+            </run>
+        </groups>
+
+        <!-- Test Classes To Scan -->
+        <classes>
+            <class name="testCases.M01_LoginTests"/>
+            <class name="testCases.M02_HomeTests"/>
+            <class name="testCases.M03_SearchingTests"/>
+            <class name="testCases.M03_OverflowMenuTest"/>
+            <class name="testCases.M03_DashboardTest"/>
+        </classes>
+    </test> <!-- Test -->
+
+    <!--  ───────────── TEST GROUP 2 ────────────────────────────────────────────────────  -->
+    <test name="Regression_Tests" preserve-order="true">
+        <groups>
+            <run>
+                <include name="Regression"/>
+            </run>
+        </groups>
+
+        <classes>
+            <!-- Replace it with your real regression classes -->
+            <!--<class name="testCases.M03_BookingWorkflowTests"/>
+            <class name="testCases.M03_SearchingTests"/>-->
+        </classes>
+    </test>
+
+    <!--  ───────────── TEST GROUP 3 ────────────────────────────────────────────────────  -->
+    <test name="pre-release suite" preserve-order="true">
+        <groups>
+            <define name="smokePlusSanity">
+                <include name="Sanity"/>
+                <include name="Smoke"/>
+            </define>
+
+            <run>
+                <include name="smokePlusSanity"/>
+            </run>
+        </groups>
+
+        <classes>
+            <!-- Replace it with your real regression classes -->
+            <!--<class name="testCases.M03_BookingWorkflowTests"/>
+            <class name="testCases.M03_SearchingTests"/>-->
+        </classes>
+    </test>
+
+
+</suite> <!-- Suite -->
+

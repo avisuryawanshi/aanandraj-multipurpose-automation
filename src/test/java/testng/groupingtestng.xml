@@ -30,14 +30,14 @@
 
         <classes>
             <!-- 🔹 Individual Test Cases ===================================== -->
-            <class name="testCases.TC001LoginTest"/>
-            <class name="testCases.TC002HomeTest"/>
-            <class name="testCases.TC003BookingTest"/>
-            <class name="testCases.TC004SearchingTest"/>
-            <class name="testCases.TC005OverflowMenuTest"/>
-            <class name="testCases.TC006DashboardTest"/>
-            <class name="testCases.TC007LoginBiometricTest"/>
-            <class name="testCases.TC008LoginRandomTest"/>
+            <class name="testCases.M01_LoginTests"/>
+            <class name="testCases.M02_HomeTests"/>
+            <class name="testCases.M03_BookingWorkflowTests"/>
+            <class name="testCases.M03_SearchingTests"/>
+            <class name="testCases.M03_OverflowMenuTest"/>
+            <class name="testCases.M03_DashboardTest"/>
+            <class name="testCases.M01_BiometricTests"/>
+            <class name="testCases.M01_LoginRandomTest"/>
             <!-- 🔸 Grouped Test Cases ======================================== -->
             <!--<class name="testGrouping.GP001LoginTest"/>
             <class name="testGrouping.GP002HomeTest"/>

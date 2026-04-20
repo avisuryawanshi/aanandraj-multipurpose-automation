@@ -1,0 +1,13 @@
+2026-04-15 03:01:05:737 [Appium] Welcome to Appium v3.2.0
+2026-04-15 03:01:05:740 [Appium] The autodetected Appium home path: C:\Users\ASUS\.appium
+2026-04-15 03:01:05:741 [Appium] Attempting to load driver uiautomator2...
+2026-04-15 03:01:05:747 [Appium] Requiring driver at C:\Users\ASUS\.appium\node_modules\appium-uiautomator2-driver\build\index.js
+2026-04-15 03:01:08:152 [Appium] AndroidUiautomator2Driver has been successfully loaded in 2.410s
+2026-04-15 03:01:08:176 [Appium] Appium REST http interface listener started on http://0.0.0.0:4723
+2026-04-15 03:01:08:188 [Appium] You can provide the following URLs in your client code to connect to this server:
+	http://192.168.10.4:4723/
+	http://127.0.0.1:4723/ (only accessible from the same host)
+2026-04-15 03:01:08:189 [Appium] Available drivers:
+2026-04-15 03:01:08:189 [Appium]   - uiautomator2@3.10.0 (automationName 'UiAutomator2')
+2026-04-15 03:01:08:190 [Appium] No plugins have been installed. Use the "appium plugin" command to install the one(s) you want to use.
+2026-04-15 03:02:26:649 [Appium] Received SIGINT - shutting down

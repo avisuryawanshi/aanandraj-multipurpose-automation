@@ -1,18 +1,11 @@
 package pages;
 
-import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
-import java.util.List;
 
-import static base.DriverFactory.mobileDriver;
+//import static appiumguide.DriverFactory.mobileDriver;
+
 
 // Parent class for all page objects, containing common page interactions.
 // It encapsulates common WebDriver initialization and utility functions like wait, scroll, etc.
@@ -35,7 +28,7 @@ public class BasePage {
         System.out.println("[INFO] Initializing BasePage for mobile driver...");
 
         this.mobileDriver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Fixed!
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Fixed!
     }
 }
         // NOTE: using direct locators (By) NOT dependent on PageFactory bcz Slower in Appium (lazy loading issues)

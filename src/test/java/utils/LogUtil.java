@@ -26,7 +26,7 @@ public class LogUtil {
             File folder = new File(folderPath);
             if (!folder.exists()) folder.mkdirs();
 
-            logFilePath = folderPath + testName + "_" + logType + "_" + timestamp + ".log";
+logFilePath = String.format("%s%s_%s_%s.log", folderPath, testName, logType, timestamp);
             BufferedWriter writer = new BufferedWriter(new FileWriter(logFilePath));
 
             for (LogEntry entry : entries) {

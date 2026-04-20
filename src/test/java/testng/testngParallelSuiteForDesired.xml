@@ -30,12 +30,12 @@
         </classes>
     </test>
 <!-- =============================================================================================================== -->
-    <!-- Test 2: Runs on Physical Device - Redmi Note 12 Pro+ -->
-    <test name="Physical Device - Redmi Note 12 Pro+">
+    <!-- Test 1: Runs on Emulator - Pixel 2 -->
+    <test name="Emulator - Pixel Tablet">
         <!-- Parameters passed to the Appium Driver -->
         <parameter name="platformName" value="Android"/>
-        <parameter name="deviceName" value="Redmi Note 12 Pro+"/>
-        <parameter name="udid" value="adb-cqrwkn89h6wocew8-pQXpCZ._adb-tls-connect._tcp"/>
+        <parameter name="deviceName" value="sdk_gphone64_x86_64"/>
+        <parameter name="udid" value="emulator-5556"/>
         <parameter name="platformVersion" value="14"/>
         <parameter name="automationName" value="UiAutomator2"/>
         <parameter name="appPackage" value="com.example.anandraj_multipuprose_hall"/>
@@ -46,5 +46,23 @@
             <class name="testGrouping.GP001LoginTest"/>
         </classes>
     </test>
+    <!-- =============================================================================================================== -->
+
+    <!-- Test 2: Runs on Physical Device - Redmi Note 12 Pro+
+    <test name="Physical Device - Redmi Note 12 Pro+">
+        <Parameters passed to the Appium Driver
+        <parameter name="platformName" value="Android"/>
+        <parameter name="deviceName" value="Redmi Note 12 Pro+"/>
+        <parameter name="udid" value="adb-cqrwkn89h6wocew8-pQXpCZ._adb-tls-connect._tcp"/>
+        <parameter name="platformVersion" value="14"/>
+        <parameter name="automationName" value="UiAutomator2"/>
+        <parameter name="appPackage" value="com.example.anandraj_multipuprose_hall"/>
+        <parameter name="appActivity" value="com.example.anandraj_multipuprose_hall.MainActivity"/>
+
+        Test class to be executed
+        <classes>
+            <class name="testGrouping.GP001LoginTest"/>
+        </classes>
+    </test> -->
 
 </suite>

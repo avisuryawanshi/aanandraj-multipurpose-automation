@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Configuration status="INFO">
-	            
+
   <Properties>
     <Property name="basePath">./log</Property> <!-- Changed 'basepath' to 'basePath' -->
   </Properties>
@@ -17,12 +17,12 @@
     </Console>
 
      <!-- Rolling file appender: writes logs to file and rolls over daily or on size -->
-    <RollingFile name="File" 
-                 fileName="${basePath}/automation.log" 
+    <RollingFile name="File"
+                 fileName="${basePath}/automation.log"
                  filePattern="${basePath}/automation-%d{yyyy-MM-dd}.log.gz">
         <!-- Log file format -->
         <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-        <SizeBasedTriggeringPolicy size="5000"/> <!-- Rolls over when file reaches 5 MB -->
+        <SizeBasedTriggeringPolicy size="5000"/> <!-- Rolls over when a file reaches 5 MB -->
         <!-- <TimeBasedTriggeringPolicy />--> <!-- Rolls over daily -->
 
         <!-- Optional: roll over every day (uncomment if needed) -->
@@ -38,8 +38,8 @@
     <Root level="Info">
          <!-- Here you can use multiple log levels: All, Trace, Debug, Info, Warn, Error, Off -->
          <AppenderRef ref="Console" />     <!-- Enable console logging -->
-         <!--  <AppenderRef ref="File"/>-->
+         <AppenderRef ref="File"/>         <!-- Enable file logging -->
     </Root>
   </Loggers>
-  
+
 </Configuration>

@@ -19,8 +19,8 @@
 
         <classes>
             <!-- Replace it with your real test classes -->
-            <class name="testCases.TC001LoginTest"/>
-            <class name="testCases.TC002HomeTest"/>
+            <class name="testCases.M01_LoginTests"/>
+            <class name="testCases.M02_HomeTests"/>
         </classes>
     </test>
 
@@ -34,8 +34,8 @@
 
         <classes>
             <!-- Replace it with your real regression classes -->
-            <class name="testCases.TC003BookingTest"/>
-            <class name="testCases.TC004SearchingTest"/>
+            <class name="testCases.M03_BookingWorkflowTests"/>
+            <class name="testCases.M03_SearchingTests"/>
         </classes>
     </test>
 

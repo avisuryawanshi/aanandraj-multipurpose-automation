@@ -1,0 +1,53 @@
+{
+  "testCases": [
+    {
+      "testCaseNumber": "TC003",
+      "username": "",
+      "password": "",
+      "description": "TC003 - Empty username & password",
+      "expectAlert": false,
+      "bugNote": "N/A"
+    },
+    {
+      "testCaseNumber": "TC004",
+      "username": "$%&@!*",
+      "password": "1234",
+      "description": "TC004 - Special characters in username",
+      "expectAlert": true,
+      "bugNote": "No alert shown for special characters - Security concern"
+    },
+    {
+      "testCaseNumber": "TC005",
+      "username": "tester",
+      "password": "12",
+      "description": "TC005 - Short password",
+      "expectAlert": false,
+      "bugNote": "N/A"
+    },
+    {
+      "testCaseNumber": "TC006",
+      "username": "tester",
+      "password": "",
+      "description": "TC006 - Only username",
+      "expectAlert": false,
+      "bugNote": "N/A"
+    },
+    {
+      "testCaseNumber": "TC007",
+      "username": "",
+      "password": "123456",
+      "description": "TC007 - Only password",
+      "expectAlert": true,
+      "bugNote": "No alert shown when password provided without username - Critical validation issue"
+    },
+    {
+      "testCaseNumber": "TC008",
+      "username": "thisisaverylongusernameexceedinglimit",
+      "password": "123456",
+      "description": "TC008 - Long input",
+      "expectAlert": true,
+      "bugNote": "No alert shown for excessively long username - Performance & security risk"
+    }
+  ]
+}
+

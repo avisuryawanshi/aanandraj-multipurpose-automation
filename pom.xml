@@ -9,238 +9,227 @@
     <artifactId>aanandraj-multipurpose-automation</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- ================================================================================================================-->
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Dependency Versions - Centralized for easy updates -->
+        <selenium.version>4.33.0</selenium.version>
+        <appium.version>9.4.0</appium.version>
+        <testng.version>7.11.0</testng.version>
+        <poi.version>5.5.1</poi.version>
+        <log4j2.version>2.25.4</log4j2.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <extentreports.version>5.1.1</extentreports.version>
+        <allure.version>2.29.1</allure.version>
     </properties>
 
-<!-- ================================================================================================================================================== -->
-<!-- BUILD SECTION:: Plugins for compiling and running tests with Maven -->
+    <!-- ======================================================================================================== -->
+    <!-- DEPENDENCY MANAGEMENT: Centralized version control for all dependencies -->
+    <!-- ======================================================================================================== -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Selenium -->
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-java</artifactId>
+                <version>${selenium.version}</version>
+            </dependency>
+            <!-- Appium -->
+            <dependency>
+                <groupId>io.appium</groupId>
+                <artifactId>java-client</artifactId>
+                <version>${appium.version}</version>
+            </dependency>
+            <!-- TestNG -->
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+            </dependency>
+            <!-- JUnit 4 -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit4.version}</version>
+            </dependency>
+            <!-- JUnit 5 (Jupiter) -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit5.version}</version>
+            </dependency>
+            <!-- Apache POI -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <!-- Log4j2 -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+            <!-- SLF4J -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <!-- ExtentReports -->
+            <dependency>
+                <groupId>com.aventstack</groupId>
+                <artifactId>extentreports</artifactId>
+                <version>${extentreports.version}</version>
+            </dependency>
+            <!-- Allure Reporting -->
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-testng</artifactId>
+                <version>${allure.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-java-commons</artifactId>
+                <version>${allure.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
+    <!-- ======================================================================================================== -->
+    <!-- DEPENDENCIES: Libraries required for Appium mobile automation framework -->
+    <!-- ======================================================================================================== -->
+    <dependencies>
+    <!-- ============================ SELENIUM ============================ -->
+    <!-- ✅ Selenium Java WebDriver: For browser and mobile automation via WebDriver -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+    </dependency>
+
+    <!-- ============================ APPIUM ============================ -->
+    <!-- ✅ Appium Java Client: Mobile test automation for Android and iOS -->
+    <dependency>
+        <groupId>io.appium</groupId>
+        <artifactId>java-client</artifactId>
+    </dependency>
+
+    <!-- ============================ TESTNG ============================ -->
+    <!-- ✅ TestNG: Primary test framework - parallel execution, data providers, retry -->
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- ============================ APACHE POI ============================ -->
+    <!-- ✅ POI: Read/write XLS files (Excel 97-2003) -->
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+    </dependency>
+    <!-- ✅ POI OOXML: Read/write XLSX files (Excel 2007+) -->
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+    </dependency>
+
+    <!-- ============================ LOGGING ============================ -->
+    <!-- ✅ SLF4J API: Logging facade for framework-agnostic logging -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <!-- ✅ SLF4J Simple: Simple console logging implementation for tests -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <!-- ✅ Log4j2 API: Provides the logging API -->
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+    </dependency>
+    <!-- ✅ Log4j2 Core: Implementation for writing logs to files, console, etc. -->
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- ============================ REPORTING ============================ -->
+    <!-- ✅ ExtentReports: Advanced HTML reporting with screenshots and charts -->
+    <dependency>
+        <groupId>com.aventstack</groupId>
+        <artifactId>extentreports</artifactId>
+    </dependency>
+    <!-- ✅ Allure Reporting: Modern, interactive test reports -->
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-testng</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-java-commons</artifactId>
+    </dependency>
+
+
+    </dependencies>
+    <!-- =============================================================================================================== -->
+    <!-- BUILD: Plugins for compiling and running tests with Maven -->
+    <!-- =============================================================================================================== -->
     <build>
-        <!-- To define the plugin version in your parent POM -->
-        <pluginManagement>
-            <plugins>
-
-                <!-- ✅ Maven Compiler Plugin: Used to compiles Java source code in the 'src/main/java' and 'src/test/java' folders-->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.14.0</version>
-                    <!-- You can optionally specify Java version using <configuration> here -->
-                    <!-- Optional: Specify Java version compatibility -->
-                    <!--
-                    <configuration>
-                      <source>1.8</source>
-                      <target>1.8</target>
-                    </configuration>
-                    -->
-                </plugin>
-
-                <!-- ***************************************************************** -->
-
-                <!-- ✅ Maven Surefire Plugin for TestNG: Executes TestNG tests as part of the Maven 'test' phase -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.5.3</version>
-
-                    <!-- This plugin can be configured to use a specific testng.xml file -->
-                    <!-- Configuration for running multiple test suites -->
-                    <configuration>
-                        <suiteXmlFiles>
-                            <suiteXmlFile>master.xml</suiteXmlFile>  <!-- MASTER XML-->
-                            <suiteXmlFile>testng.xml</suiteXmlFile>  <!-- TESTNG XML-->
-                        </suiteXmlFiles>
-                    </configuration>
-
-                </plugin>
-
-            </plugins>
-        </pluginManagement>
         <plugins>
+            <!-- ✅ Maven Compiler Plugin: Compiles Java source code with preview features -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
                 <configuration>
-                    <source>22</source>
-                    <target>22</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                     <compilerArgs>--enable-preview</compilerArgs>
+                </configuration>
+            </plugin>
+            <!-- ✅ Maven Surefire Plugin: Executes TestNG tests during the 'test' phase -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.3</version>
+                <!-- This plugin can be configured to use a specific testng.xml file -->
+                <!-- Configuration for running multiple test suites -->
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/testng.xml</suiteXmlFile>
+                        <!--  <suiteXmlFile>src/test/java/testng/SanitySuite.xml</suiteXmlFile>-->  <!-- Sanity TESTNG XML-->
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-<!-- *************** DEPENDENCIES SECTION: Libraries required for Appium mobile automation framework *************************** -->
-<!-- Dependencies section Required libraries for Appium, TestNG, Selenium, Excel, Logging, Reports etc.  -->
-
-    <dependencies>
-
-<!-- SELENIUM JAVA ================================================================================================================ -->
-
-    <!-- ✅ Selenium Java WebDriver: for browser automation (latest 4.x version) -->
-    <!-- Required for WebDriver capabilities which Appium internally uses. Used to locate and interact with mobile elements.-->
-
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.33.0</version>
-        </dependency>
-
-<!-- APPIUM ================================================================================================================ -->
-
-        <!-- ✅ Appium Java Client: Enables writing mobile test automation code for Android and iOS. Supports gestures, touch actions, and interaction with native apps.
-         Used for automating booking and expense entry flows on real devices/emulators.-->
-
-        <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
-        <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>9.4.0</version>
-        </dependency>
-
-<!-- JUnit ================================================================================================================ -->
-
-        <!-- ✅ JUnit 4: A unit testing framework. Can be used for quick local test execution. Used here for backward compatibility or small component testing.-->
-
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- ***************************************************************** -->
-
-        <!-- JUnit 5 (Jupiter): More modern, modular testing approach. Offers better annotations and test lifecycle control.
-        Optional but good to include in larger automation projects.-->
-
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.13.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- ***************************************************************** -->
-
-        <!-- JUnit 5 Engine: Required to execute JUnit Jupiter (JUnit 5) test cases.-->
-
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.13.1</version>
-            <scope>test</scope>
-        </dependency>
-
-<!-- TESTNG =========================================================================================================== -->
-
-        <!-- ✅ TestNG: Supports parallel execution, data providers, reporting, retry mechanism.
-         Used in this project to run login, booking, and reporting test cases in parallel. -->
-
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.11.0</version>
-            <scope>test</scope>      <!-- Limit TestNG scope to testing only --> <!-- Only used during test phase -->
-        </dependency>
-
-<!-- EXCEL Data-driven testing XLS/XLSX ============================================================================= -->
-
-        <!-- ✅ Apache POI - Required to read/write XLS files (Excel 97–2003) -->
-
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>5.3.0</version>
-        </dependency>
-
-        <!-- ***************************************************************** -->
-
-        <!-- ✅ Apache POI OOXML - Required to read/write XLSX files/ Supports newer XLSX (Excel 2007+) file format -->
-
-        <!--   -->
-
-<!-- LOGS - SLF4J/log4j ============================================================================================ -->
-
-        <!-- ✅ SLF4J Simple Logging Facade for Java - For clean and simple console logging during tests -->
-        <!-- Works with Selenium and TestNG logging systems -->
-        <!-- Useful for logging test statuses and debug info in a clean format -->
-
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.17</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- ***************************************************************** -->
-
-        <!-- ✅ Log4j2 Dependencies: Used for advanced logging in Java automation frameworks like Selenium + TestNG -->
-
-        <!-- 🔹 log4j-API: Provides the logging API used in the project -->
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.24.3</version>
-        </dependency>
-
-        <!-- ***************************************************************** -->
-
-        <!-- 🔹 log4j-CORE: Provides the core implementation needed to write logs to files, console, etc. -->
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.24.3</version>
-        </dependency>
-
-<!-- REPORTS ================================================================================================================= -->
-
-        <!-- ✅ ExtentReports for HTML reporting - Advanced HTML reporting library for Selenium + TestNG -->
-        <!-- Enables screenshots, color-coded logs, charts, etc. -->
-
-        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-        <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>5.1.1</version>
-        </dependency>
-
-        <!-- ***************************************************************** -->
-        <!-- ✅ Allure Reporting for TestNG -->
-
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.29.1</version>
-        </dependency>
-
-        <!-- ***************************************************************** -->
-
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-java-commons -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-java-commons</artifactId>
-            <version>2.29.1</version>
-        </dependency>
-
-        <!-- ================================================================================================================= -->
-
-
-    </dependencies>
-
-
-
 
 </project>

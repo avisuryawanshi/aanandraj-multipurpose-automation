@@ -4,13 +4,7 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.List;
 
 public class BookingPage extends BasePage {
 
@@ -32,7 +26,7 @@ public class BookingPage extends BasePage {
     // ********* BOOKING FORM *********
 
     final By customerNameLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(0)");
-    final By addressLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[2]");
+    final By addressLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(1)");
     final By mobileNoLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(2)");
 
     // DATE
@@ -44,9 +38,18 @@ public class BookingPage extends BasePage {
 
     // TIME
     final By timeFieldLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(10)");
-    final By selectTimeLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]");
+
+    //final By selectTimeLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]");
+    final By selectTimeLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(6)");  // Example: selecting 30
+    //xpath //android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View
+
     final By enterHourLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]");
+    //final By enterHourLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description("Select hours 4")");
+    //final By enterHourLoc = By.xpath("//android.widget.SeekBar[@content-desc=\"Select hours 4");
+    //xpath //android.widget.SeekBar[@content-desc="Select hours 4"]
+
     final By enterMinuteLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]");
+
     final By amLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"AM\")");
     final By pmLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"PM\")");
 
@@ -58,48 +61,47 @@ public class BookingPage extends BasePage {
     //final By eventTypeLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[4]");
 
     // CATERING
-    final By cateringLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Catering\")");
-    final By promisedItemsCatLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(2)");
-    //final By promisedItemsCatLoc = By.xpath("//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[3]");
+    //final By cateringToggleLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Catering\")");
+    //final By cateringLoc = new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().description(\"Catering\")");
+    //final By promisedItemsCatLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[5]");
+    //final By promisedItemsCatLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(4)");
 
     //final By scrollSpecificDraftEventLoc = AppiumBy.androidUIAutomator(
-        //    "new UiScrollable(new UiSelector().scrollable(true))" + ".scrollIntoView(new UiSelector().description(\"Srushti \n" + "2024-09-14\n" + "18:50\"))");
-
-    final By amountForCatLoc = AppiumBy.androidUIAutomator(
-            "new UiScrollable(new UiSelector().scrollable(true))" + ".scrollIntoView(new UiSelector().className(\"android.widget.EditText\").instance(5))");
+    //    "new UiScrollable(new UiSelector().scrollable(true))" + ".scrollIntoView(new UiSelector().description(\"Srushti \n" + "2024-09-14\n" + "18:50\"))");
 
     //final By amountForCatLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(5)");
-    //final By amountForCatLoc = By.xpath("//android.widget.FrameLayout[@resource-id='android:id/content']/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[6]");
+    //final By amountForCatLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[6]");
 
     // DECORATIONS
-    final By decorationsLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Decorations\")");
+    //final By decorationsLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Decorations\")");
     //final By promisedItemsDecLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(3)");
-    final By promisedItemsDecLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[4]");
-    final By amountForDecLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(4)");
+    //By promisedItemsDecLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[4]");
+    //final By amountForDecLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(4)");
     //final By amountForDecLoc = By.xpath("//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[5]");
 
     // PHOTOGRAPHY
-    final By photographyLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Photography\")");
+    //final By photographyLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Photography\")");
     // same locator as hall amount !!!
     //final By amountForPhotoLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[6]");
 
     // PANDIT
-    final By panditLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Pandit\")");
+    //final By panditLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Pandit\")");
     //final By amountForPanditLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className("android.widget.EditText").instance(4)");
-    final By amountForPanditLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[5]");
+    //final By amountForPanditLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[5]");
 
     // AMOUNT SECTION
-    final By hallAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(5)");
-    //final By hallAmountLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[6]");
+    //final By hallAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(5)");
+    //final By hallAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.EditText\").instance(4)");
+    final By hallAmountLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[6]");
 
     // Total Amount NOT REQUIRED ***
     //final By totalAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(12)");
 
     // DUPLICATE LOCATORS ***
     //final By bookingAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className("android.widget.EditText").instance(5)");
-    final By bookingAmountLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[4]");
+    //final By bookingAmountLoc = By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[4]");
     // Balance Amount NOT REQUIRED ****
-    final By balanceAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(13)");
+    //final By balanceAmountLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(13)");
 
     // FOOTER SECTION
     final By sendToWhatsAppLoc = new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Send to WhatsApp\")");
@@ -215,23 +217,32 @@ public class BookingPage extends BasePage {
     }
 
     // ********* CATERING ********* ------------------------------------------------------------------------------------
-    /*public void toggleCatering() {
-        wait.until(ExpectedConditions.elementToBeClickable(cateringLoc)).click();
+   /*public void toggleCatering() {
+        wait.until(ExpectedConditions.elementToBeClickable(cateringToggleLoc)).click();
         // Hide keyboard after entering value (optional)
         ((AndroidDriver) mobileDriver).hideKeyboard();
     }
 
     public void enterPromisedItemsCatering(String items) {
-        WebElement field = wait.until(ExpectedConditions.elementToBeClickable(promisedItemsCatLoc));
-        field.click();
-        field.clear();
-        field.sendKeys(items);
+        WebElement PromisedItems = wait.until(ExpectedConditions.elementToBeClickable(promisedItemsCatLoc));
+        PromisedItems.click();
+        PromisedItems.clear();
+        PromisedItems.sendKeys(items);
         // Hide keyboard after entering value (optional)
         ((AndroidDriver) mobileDriver).hideKeyboard();
     }
 
+    public void enterAmountForCatering(String amount) {
+        WebElement field = wait.until(ExpectedConditions.visibilityOfElementLocated(amountForCatLoc));
+        field.click();
+        field.clear();
+        field.sendKeys(amount);
+        // Hide keyboard after entering value (optional)
+        ((AndroidDriver) mobileDriver).hideKeyboard();
+    }*/
+
     // ********* DECORATIONS ********* ---------------------------------------------------------------------------------
-    public void toggleDecorations() {
+    /*public void toggleDecorations() {
         wait.until(ExpectedConditions.elementToBeClickable(decorationsLoc)).click();
     }
 
@@ -282,9 +293,16 @@ public class BookingPage extends BasePage {
     }*/
 
     // APPROACH 2 ***********
-    /*public void enterHallAmount(String number) {
-        scrollToElement(hallAmountLoc);  // Ensure field is visible
+    public void enterHallAmount(String number) {
+        //scrollToElement(hallAmountLoc);  // Ensure field is visible
 
+        WebElement field = wait.until(ExpectedConditions.elementToBeClickable(hallAmountLoc));
+        field.click();
+        field.sendKeys(number);
+    }
+    // ** Scrolling Specific element (eg. Srushti) ------------------------------------------------------------------------
+
+    /*public void enterHallAmount(String number) {
         WebElement field = wait.until(ExpectedConditions.elementToBeClickable(hallAmountLoc));
         field.click();
         field.sendKeys(number);
@@ -364,18 +382,25 @@ public class BookingPage extends BasePage {
 
         System.out.println("Entered hall amount: " + number);
     }*/
+
+    /*public void enterHallAmount(String amount) {
+        WebElement field = wait.until(ExpectedConditions.visibilityOfElementLocated(hallAmountLoc));
+        field.click();
+        field.clear();
+        field.sendKeys(amount);
+    }*/
 // =====================================================================================================================
     // NOT REQUIRED Get Total Amount
     /*public String getTotalAmount() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(totalAmountLoc)).getText();
-    }*/
+    }
 
     public void enterBookingAmount(String amount) {
         WebElement field = wait.until(ExpectedConditions.visibilityOfElementLocated(bookingAmountLoc));
         field.click();
         field.clear();
         field.sendKeys(amount);
-    }
+    }*/
 
     // NOT REQUIRED Get Total Amount
     /*public String getBalanceAmount() {

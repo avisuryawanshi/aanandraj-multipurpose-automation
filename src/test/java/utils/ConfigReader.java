@@ -6,7 +6,7 @@ import java.util.Properties;
 
 /**
  * ConfigReader is a utility class to load and fetch configuration values
- * from the `config.properties` file located in the test resources' folder.
+ * from the `config-qa.properties` file located in the test resources' folder.
  * This is used to externalize configuration like device info, platform version,
  * app path, or driver behavior flags (e.g., noReset, apk install toggle, etc.).
  */
@@ -17,9 +17,9 @@ public class ConfigReader {
 
     public static void loadProperties() {
         try {
-            System.out.println("[INFO] Loading configuration from config.properties...");
+            System.out.println("[INFO] Loading configuration from config-qa.properties...");
 
-            FileInputStream file = new FileInputStream("src/test/resources/config.properties");
+            FileInputStream file = new FileInputStream("src/test/resources/config-qa.properties");
             p = new Properties();
             p.load(file);
 
