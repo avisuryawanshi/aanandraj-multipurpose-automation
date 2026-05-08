@@ -51,13 +51,14 @@ public class DriverController {
         try {
             // ✅ Use UiAutomator2Options (W3C-compliant) with method-level optimizations
             UiAutomator2Options options = new UiAutomator2Options()
-                    .setPlatformName(platformName)
-                    .setDeviceName(deviceName)
-                    .setUdid(udid)
-                    .setPlatformVersion(platformVersion)
-                    .setAutomationName(automationName)
+                    .setPlatformName(ConfigReader.get("device.emulator.platformName"))
+                    .setDeviceName(ConfigReader.get("device.emulator.name"))
+                    .setUdid(ConfigReader.get("device.real.udid"))
+                    .setPlatformVersion(ConfigReader.get("device.emulator.platformVersion"))
+                    .setAutomationName(ConfigReader.get("device.emulator.automationName"))
                     .setAppPackage(ConfigReader.get("appPackage"))
                     .setAppActivity(ConfigReader.get("appActivity"))
+                    .setAdbExecTimeout(Duration.ofSeconds(60)) // Increased timeout for ADB commands
 
                     // 🚀 HEADLESS PERFORMANCE OPTIMIZATIONS
 

@@ -1,22 +1,40 @@
-12:48:12.362 [main] INFO  base.BaseTest -  END OF TEST: verifyInvalidLoginScenarios
-12:48:12.370 [main] INFO  base.BaseTest - ----------------------------------------------------
+20:12:51.611 [main] INFO  base.BaseTest - ----------------------------------------------------
 
-12:48:12.376 [main] INFO  base.BaseTest - 🚀 Launching Appium driver for test method: verifyInvalidLoginScenarios
-12:48:17.437 [main] INFO  base.BaseTest - ✅ Driver launched and Extent test node created for: verifyInvalidLoginScenarios
-12:48:17.442 [main] INFO  testCases.M01_LoginTests - ===== Initializing LoginPage =====
-12:48:17.443 [main] INFO  testCases.M01_LoginTests - ✅ LoginPage initialized successfully
-12:48:17.450 [main] INFO  testCases.M01_LoginTests - ===== START: Testing invalid login scenario - TC008 - Long username (Assumed) =====
-12:48:17.450 [main] INFO  testCases.M01_LoginTests - Entering username: 'thisisaverylongusernameexceedinglimit'
-12:48:20.728 [main] INFO  testCases.M01_LoginTests - Entering password: ''
-12:48:22.236 [main] INFO  testCases.M01_LoginTests - Clicking login button
-12:48:22.858 [main] INFO  testCases.M01_LoginTests - Validating response for scenario: TC008 - Long username (Assumed)
-12:48:33.208 [main] INFO  base.BaseTest - ====================================================
-12:48:33.208 [main] INFO  base.BaseTest -  STARTING TEST: verifyInvalidLoginScenarios
-12:48:33.208 [main] INFO  base.BaseTest - ====================================================
-12:48:34.214 [main] INFO  utils.ScreenshotUtil - [Screenshot] Saved: C:\Users\ASUS\IdeaProjects\aanandraj-multipurpose-automation/screenshots/2026-04-19/verifyInvalidLoginScenarios_124834.png
-12:48:34.215 [main] ERROR base.BaseTest - ❌ FAILED: verifyInvalidLoginScenarios | Device: null
-12:48:34.215 [main] INFO  base.BaseTest - 🛑 Quitting Appium driver after test method: verifyInvalidLoginScenarios
-12:48:34.738 [main] INFO  base.BaseTest - ----------------------------------------------------
-12:48:34.738 [main] INFO  base.BaseTest -  END OF TEST: verifyInvalidLoginScenarios
-12:48:34.738 [main] INFO  base.BaseTest - ----------------------------------------------------
+20:12:51.631 [main] INFO  base.BaseTest - 🚀 Launching Appium driver for test method: verifyInvalidLoginScenarios
+20:12:56.697 [main] INFO  base.BaseTest - ✅ Driver launched and Extent test node created for: verifyInvalidLoginScenarios
+20:12:56.702 [main] INFO  testCases.M01_LoginTests - ===== Initializing LoginPage =====
+20:12:56.708 [main] INFO  testCases.M01_LoginTests - ✅ LoginPage initialized successfully
+20:12:56.714 [main] INFO  testCases.M01_LoginTests - ===== START: Testing invalid login scenario - TC008 - Long username (Assumed) =====
+20:12:56.714 [main] INFO  testCases.M01_LoginTests - Entering username: 'thisisaverylongusernameexceedinglimit'
+20:13:00.405 [main] INFO  testCases.M01_LoginTests - Entering password: ''
+20:13:02.206 [main] INFO  testCases.M01_LoginTests - Clicking login button
+20:13:03.021 [main] INFO  testCases.M01_LoginTests - Validating response for scenario: TC008 - Long username (Assumed)
+20:13:13.815 [main] INFO  base.BaseTest - ====================================================
+20:13:13.815 [main] INFO  base.BaseTest -  STARTING TEST: verifyInvalidLoginScenarios
+20:13:13.815 [main] INFO  base.BaseTest - ====================================================
+20:13:15.608 [main] INFO  utils.ScreenshotUtil - [Screenshot] Saved: C:\Users\ASUS\IdeaProjects\aanandraj-multipurpose-automation/screenshots/2026-05-08/sdk_gphone64_x86_64_verifyInvalidLoginScenarios_201315.png
+20:13:15.610 [main] ERROR base.BaseTest - ❌ FAILED: verifyInvalidLoginScenarios | Device: sdk_gphone64_x86_64
+20:13:15.610 [main] INFO  base.BaseTest - 🛑 Quitting Appium driver after test method: verifyInvalidLoginScenarios
+20:13:17.030 [main] INFO  base.BaseTest - ----------------------------------------------------
+20:13:17.030 [main] INFO  base.BaseTest -  END OF TEST: verifyInvalidLoginScenarios
+20:13:17.030 [main] INFO  base.BaseTest - ----------------------------------------------------
+
+20:13:17.034 [main] INFO  base.BaseTest - 🚀 Launching Appium driver for test method: testSearchFunction
+20:13:21.997 [main] INFO  base.BaseTest - ✅ Driver launched and Extent test node created for: testSearchFunction
+20:13:22.000 [main] INFO  testCases.M03_SearchingTests - [INIT] Page objects initialized for LoginPage and HomePage.
+20:13:22.002 [main] INFO  testCases.M03_SearchingTests - [TEST] Logging in with username 'test' and password '123456'
+20:13:30.024 [main] INFO  testCases.M03_SearchingTests - [TEST] Successfully logged in, proceeding with search functionality tests...
+20:13:35.259 [main] INFO  testCases.M03_SearchingTests - [TEST] Navigating to Search tab and performing search operations...
+20:13:36.383 [main] INFO  testCases.M03_SearchingTests - [TEST] Entering search text 'John' and fetching results...
+20:13:40.208 [main] INFO  testCases.M03_SearchingTests - [TEST] Fetching visible booking info from search results...
+20:13:41.099 [main] INFO  testCases.M03_SearchingTests - [TEST] Search result text: 
+20:13:44.408 [main] INFO  testCases.M03_SearchingTests - [TEST] Search functionality test completed successfully.
+20:13:44.419 [main] INFO  base.BaseTest - ====================================================
+20:13:44.420 [main] INFO  base.BaseTest -  STARTING TEST: testSearchFunction
+20:13:44.420 [main] INFO  base.BaseTest - ====================================================
+20:13:44.420 [main] INFO  base.BaseTest - ✅ PASSED: testSearchFunction | Device: sdk_gphone64_x86_64
+20:13:44.420 [main] INFO  base.BaseTest - 🛑 Quitting Appium driver after test method: testSearchFunction
+20:13:45.926 [main] INFO  base.BaseTest - ----------------------------------------------------
+20:13:45.926 [main] INFO  base.BaseTest -  END OF TEST: testSearchFunction
+20:13:45.926 [main] INFO  base.BaseTest - ----------------------------------------------------
 
